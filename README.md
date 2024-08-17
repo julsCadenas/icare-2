@@ -11,3 +11,20 @@ My first CRUD project was the [iCARE Website](https://github.com/julsCadenas/iCA
 - React JS
 - Axios
 - Tailwind CSS
+
+## How to run:
+```bash
+cd path/to/project
+```
+### Backend
+```bash
+cd backend
+npm i
+npm run dev 
+```
+### Frontend
+```bash
+cd frontend
+npm i
+npm run dev 
+```
