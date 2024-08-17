@@ -1,10 +1,23 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'prompt': ['Prompt'],
+        'inter': ['Inter']
+      },
+      colors: {
+        'customGreen' : '#096a10',
+        'green2' : '#0c9015',
+        'customWhite': '#ebe6e0',
+        'white2': '#f5f8eb',
+        'customGray': '#d3d3d3'
+      }
+    },
   },
   plugins: [],
 }
