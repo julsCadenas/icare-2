@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
@@ -9,7 +9,13 @@ const Login = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login, isAuthenticated } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/home', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,10 +27,10 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        login(response.data.token); 
+        login(response.data.token);
         setSuccess('Login successful!');
         setError('');
-        navigate('/home');
+        navigate('/home', { replace: true });
       }
     } catch (error) {
       if (error.response) {
