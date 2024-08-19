@@ -103,7 +103,7 @@ router.get('/current', auth, async (req, res) => {
 router.post('/tokenIsValid', async (req, res) => {
     try {
         const authHeader = req.header("Authorization");
-        const token = authHeader && authHeader.split(' ')[1]; // Get token part after 'Bearer'
+        const token = authHeader && authHeader.split(' ')[1];
 
         if (!token) return res.json(false);
 
