@@ -5,7 +5,10 @@ import deptRoutes from './routes/deptRoutes.js';
 import profRoutes from './routes/profRoutes.js';
 import consRoutes from './routes/consRoutes.js';
 import tutRoutes from './routes/tutRoutes.js';
+import accsRoutes from './routes/accsRoutes.js'
 import cors from 'cors';
+// import jwt from 'jsonwebtoken';
+// import auth from './middleware/auth.js';
 
 const app = express();
 app.use(express.json()) // middleware
@@ -16,7 +19,7 @@ app.get('/', (request, response)=>{
     return response.status(234).send('trying mern');
 });
 
-
+app.use('/login', accsRoutes);
 app.use('/departments', deptRoutes); 
 app.use('/professors', profRoutes); 
 app.use('/consultation', consRoutes);
