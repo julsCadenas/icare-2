@@ -1,8 +1,13 @@
 import React from 'react'
+import Header from '../components/header'
 
 const Home = () => {
+
   return (
-    <div>Home</div>
+    <main  className='flex justify-center items-center h-screen flex-col'>
+      <Header />
+      <div>Home</div>
+    </main>
   )
 }
 

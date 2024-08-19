@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const [student_email, setEmail] = useState('');
@@ -8,24 +9,30 @@ const Login = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5555/login', {
+      const response = await axios.post('http://192.168.1.4:5555/login', {
         student_email,
-        password
+        password,
       });
 
       if (response.status === 200) {
+        login(response.data.token); 
         setSuccess('Login successful!');
         setError('');
-        navigate('/home')
+        navigate('/home');
       }
     } catch (error) {
       if (error.response) {
-        setError(error.response.data);
+        if (error.response.status === 404) {
+          setError('Incorrect email or password.');
+        } else {
+          setError(error.response.data);
+        }
         setSuccess('');
       } else {
         setError('An error occurred');
@@ -46,21 +53,21 @@ const Login = () => {
         </section>
         <section className='flex flex-col space-y-3 w-full max-w-[300px] md:max-w-[500px] text-base'>
           <div>
-            <input 
+            <input required
               type='email' 
               placeholder='FIT Email' 
               value={student_email}
               onChange={(e) => setEmail(e.target.value)}
-              className='focus:outline-none pl-5 focus:ring-4 focus:ring-customGray bg-white2 rounded-lg md:rounded-xl h-8 md:h-10 w-full'
+              className={`focus:outline-none pl-5 focus:ring-4 focus:ring-customGray bg-white2 rounded-lg md:rounded-xl h-8 md:h-10 w-full ${error && !student_email ? 'border-red-500' : ''}`}
             />
           </div>
           <div>
-            <input 
+            <input required 
               type='password' 
               placeholder='Password' 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className='focus:outline-none pl-5 focus:ring-4 focus:ring-customGray bg-white2 rounded-lg md:rounded-xl h-8 md:h-10 w-full'
+              className={`focus:outline-none pl-5 focus:ring-4 focus:ring-customGray bg-white2 rounded-lg md:rounded-xl h-8 md:h-10 w-full ${error && !password ? 'border-red-500' : ''}`}
             />
           </div>
         </section>

@@ -80,6 +80,26 @@ router.delete('/:id', auth, async (req, res) => {
     }
 });
 
+router.get('/current', auth, async (req, res) => {
+    try {
+        const authHeader = req.header("Authorization");
+        const token = authHeader && authHeader.split(' ')[1]; 
+
+        if (!token) return res.status(401).json({ msg: 'No token provided' });
+
+        const verified = jwt.verify(token, secretToken);
+        if (!verified) return res.status(401).json({ msg: 'Token is not valid' });
+
+        const user = await Accounts.findById(verified.id);
+        if (!user) return res.status(404).json({ msg: 'User not found' });
+
+        res.json({ user });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+
 router.post('/tokenIsValid', async (req, res) => {
     try {
         const authHeader = req.header("Authorization");
