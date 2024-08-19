@@ -4,7 +4,7 @@ import Header from '../components/header'
 const Home = () => {
 
   return (
-    <main  className='flex justify-center items-center h-screen flex-col'>
+    <main  className='flex justify-center items-center h-screen flex-col bg-customWhite'>
       <Header />
       <div>Home</div>
     </main>

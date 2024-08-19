@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import Loading from '../components/loading';
 
 const AuthContext = createContext({
   isAuthenticated: false,
@@ -9,41 +10,52 @@ const AuthContext = createContext({
 });
 
 const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(null); 
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      axios.post('http://192.168.1.4:5555/login/tokenIsValid', null, {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      .then(async (response) => {
-        if (response.data) {
-          setIsAuthenticated(true);
-          const userResponse = await axios.get('http://192.168.1.4:5555/login/current', {
+    const checkAuth = async () => {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        try {
+          const response = await axios.post('http://192.168.1.4:5555/login/tokenIsValid', null, {
             headers: { Authorization: `Bearer ${token}` }
           });
-          setUser(userResponse.data.user);
-        } else {
+          if (response.data) {
+            setIsAuthenticated(true);
+            const userResponse = await axios.get('http://192.168.1.4:5555/login/current', {
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            setUser(userResponse.data.user);
+          } else {
+            localStorage.removeItem('authToken');
+            setIsAuthenticated(false);
+          }
+        } catch {
           localStorage.removeItem('authToken');
           setIsAuthenticated(false);
         }
-        if (response.data === false) {
-          setIsAuthenticated(false);
-        }
-      })
-      .catch(() => {
-        localStorage.removeItem('authToken');
+      } else {
         setIsAuthenticated(false);
-      });
-    } else {
-      setIsAuthenticated(false);
-    }
+      }
+    };
+
+    checkAuth();
+
+    const handleStorageChange = () => {
+      checkAuth();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   const login = (token) => {
     localStorage.setItem('authToken', token);
+    window.localStorage.setItem('authToken', token);
     setIsAuthenticated(true);
     axios.get('http://192.168.1.4:5555/login/current', {
       headers: { Authorization: `Bearer ${token}` }
@@ -54,12 +66,13 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('authToken');
+    window.localStorage.removeItem('authToken');
     setIsAuthenticated(false);
     setUser(null);
   };
 
   if (isAuthenticated === null) {
-    return <div>Loading...</div>; 
+    return <Loading />;
   }
 
   return (

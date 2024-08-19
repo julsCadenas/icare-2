@@ -12,7 +12,7 @@ const Header = () => {
     };
 
     return (
-        <header>
+        <header className='bg-customWhite'>
             <button onClick={handleLogout} className='border-2 border-black'>Log Out</button>
         </header>
     );
