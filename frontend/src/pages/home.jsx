@@ -36,7 +36,7 @@ const Home = () => {
         <aside className='max-w-[400px] flex flex-col text-center items-center border-4 border-customGray p-3 rounded-xl space-y-3'>
           <p className='text-xl font-semibold'>Consultation</p>
           <p className='text-justify tracking-tight'><strong>iCARE </strong>{cons}</p>
-          <a className='bg-customGreen p-2 px-8 font-semibold text-customWhite rounded-xl cursor-pointer'>Proceed</a>
+          <a className='bg-customGreen hover:bg-green2 active:border-2 active:border-green2 transition-all p-2 px-8 font-semibold text-customWhite rounded-xl cursor-pointer'>Proceed</a>
         </aside>
         <aside className='max-w-[400px] flex flex-col text-center items-center border-4 border-customGray p-3 rounded-xl space-y-3'>
           <p className='text-xl font-semibold'>Tutorials</p>
@@ -45,7 +45,7 @@ const Home = () => {
             <p><strong>Peer tutorials </strong>{tut2}</p>
             <p><strong>Faculty tutorials </strong>{tut3}</p>
           </section>
-          <a className='bg-customGreen p-2 px-8 font-semibold text-customWhite rounded-xl cursor-pointer'>Proceed</a>
+          <a className='bg-customGreen hover:bg-green2 active:border-2 active:border-green2 transition-all p-2 px-8 font-semibold text-customWhite rounded-xl cursor-pointer'>Proceed</a>
         </aside>
       </section>
       <Footer />
