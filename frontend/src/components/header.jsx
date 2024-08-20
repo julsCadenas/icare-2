@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Header = () => {
-    const { logout } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isNavbarDropdownOpen, setIsNavbarDropdownOpen] = useState(false);
     const [isSidebarDropdownOpen, setIsSidebarDropdownOpen] = useState(false);
@@ -64,7 +64,7 @@ const Header = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </p>
-                <ul className="hidden lg:flex space-x-8 font-semibold text-xl flex items-center">
+                <ul className="hidden lg:flex space-x-8 font-semibold text-xl items-center">
                     <li className="cursor-pointer hover:text-green2 transition-colors">
                         <a href="/consultation">Consultation</a>
                     </li>
@@ -76,7 +76,7 @@ const Header = () => {
                     </li>
                     <li className="relative cursor-pointer bg-customGreen hover:bg-green2 text-customWhite max-w-36 rounded-xl transition-colors">
                         <button className='px-2 py-1 flex items-center space-x-2' onClick={toggleNavbarDropdown}>
-                            <span>User</span>
+                            <span>{user ? (user.student_name).split(' ')[0] : 'User'}</span>
                             <span className="material-symbols-outlined">keyboard_arrow_down</span>
                         </button>
                         {isNavbarDropdownOpen && (
@@ -141,7 +141,7 @@ const Header = () => {
                                 onClick={toggleSidebarDropdown}
                             >
                                 <span className="material-symbols-outlined">person</span>
-                                <span className="ml-2">User</span>
+                                <span className="ml-2">{user ? (user.student_name) : 'User'}</span>
                                 <svg
                                     fill="currentColor"
                                     viewBox="0 0 20 20"

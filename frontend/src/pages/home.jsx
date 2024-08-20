@@ -6,7 +6,9 @@ const Home = () => {
   return (
     <main  className='flex justify-center items-center h-screen flex-col bg-customWhite'>
       <Header />
-      <div>Home</div>
+      <section>
+        <p>Welcome to <strong>ICARE</strong></p>
+      </section>
     </main>
   )
 }
