@@ -48,7 +48,7 @@ const Header = () => {
     }, []);
 
     return (
-        <header className="font-prompt fixed top-2 left-5 right-5 md:left-20 md:right-20 p-3 px-5 rounded-xl z-50">
+        <header className="font-prompt fixed top-0 left-0 w-full p-3 px-10 md:px-20 rounded-xl z-50 bg-customWhite">
             <nav className="text-customGreen font-medium flex items-center justify-between mx-auto">
                 <h1 className="font-inter font-extrabold text-4xl md:text-5xl cursor-pointer hover:text-green2 transition-colors">
                     <a href="/home">iCARE</a>
@@ -97,7 +97,7 @@ const Header = () => {
 
             {/* Sidebar */}
             <nav
-                className={`fixed top-0 right-0 h-screen w-full bg-customWhite rounded-xl transform px-5 md:px-20 pt-2 ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-150 ease-in-out text-customGreen lg:hidden`}
+                className={`fixed top-0 right-0 h-screen w-full bg-customWhite rounded-xl transform px-5 md:px-16 pt-2 ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-150 ease-in-out text-customGreen lg:hidden`}
             >
                 <section className="flex flex-col h-full">
                     <section className="flex justify-between items-center p-3">
