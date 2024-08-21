@@ -1,3 +1,5 @@
+
+// LOADING SPINNER COMPONENT
 const Loading = () => {
     return(
         <div role="status" className='flex items-center h-screen justify-center bg-customWhite'>
