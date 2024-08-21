@@ -36,9 +36,14 @@ const consSchema = new mongoose.Schema({
         required: true,
         trim: true 
     },
+    comments: {
+        type: String,
+        required: false,
+        default: ''
+    },
     remarks: {
         type: String,
-        required: true,
+        required: false,
         trim: true 
     }
 }, { timestamps: true }); 

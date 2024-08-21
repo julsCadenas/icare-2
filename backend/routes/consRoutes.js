@@ -45,7 +45,8 @@ router.post('/', async (request, response) => {
             concern, 
             prof_name, 
             subj_name, 
-            remarks 
+            // comments,
+            remarks, 
         } = request.body;
 
         if (!student_number || !student_email || !student_name || !dept_name || !concern || !prof_name || !subj_name || !remarks ) {
@@ -61,6 +62,7 @@ router.post('/', async (request, response) => {
             prof_name: request.body.prof_name,
             subj_name: request.body.subj_name,
             remarks: request.body.remarks,
+            comments: request.body.comments,
         };        
 
         const cons = await Consultation.create(newCons)
