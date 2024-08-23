@@ -36,6 +36,11 @@ const tutSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    comments: {
+        type: String,
+        required: false,
+        default: ''
+    },
     remarks: {
         type: String,
         required: true,

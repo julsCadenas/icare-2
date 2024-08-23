@@ -29,6 +29,7 @@ router.post('/', async (request, response) => {
             prof_name: request.body.prof_name,
             subj_name: request.body.subj_name,
             request_date: request.body.request_date,
+            comments: request.body.comments,
             remarks: request.body.remarks,
         };        
 

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/header';
 import fetchDepts from '../utils/fetchDepts';
-import sendCons from '../utils/sendCons';
+import sendData from '../utils/sendData';
 import { AuthContext } from '../context/AuthContext';
 
 const Consultation = () => {
@@ -87,10 +87,13 @@ const Consultation = () => {
 
     try {
       console.log('Submitting consultation data:', consultationData);
-      const result = await sendCons(consLink, consultationData);
+
+      const result = await sendData(consLink, consultationData);
+
       console.log('Consultation data sent successfully:', result);
       setSuccessMessage('Consultation booked successfully!');
       setErrorMessage(''); 
+      
     } catch (e) {
       setSuccessMessage(''); 
       setErrorMessage('Failed to book consultation. Please try again.');
@@ -250,10 +253,7 @@ const Consultation = () => {
       {/* SUBMIT BUTTON */}
       <button 
         onClick={handleSubmit} 
-        className='bg-customGreen text-customWhite p-1 px-3 focus:outline-none hover:bg-green2 focus:ring-4 focus:ring-green2 transition-all font-bold text-xl rounded-lg'
-      >
-        Submit
-      </button>
+        className='bg-customGreen text-customWhite p-1 px-3 focus:outline-none hover:bg-green2 focus:ring-4 focus:ring-green2 transition-all font-bold text-xl rounded-lg'>Submit</button>
 
     </main>
   );
