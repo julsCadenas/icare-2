@@ -230,6 +230,7 @@ const Tutorial = () => {
 
       {/* DATE AND COMMENTS INPUT */}
       <section className='flex flex-col gap-3 max-w-[300px] md:max-w-[450px] w-full pt-5'>
+        
         {/* REQUEST DATE PICKER */}
         <aside className='flex flex-col'>
           <label htmlFor="requestDate">Request Date:</label>
@@ -248,10 +249,10 @@ const Tutorial = () => {
 
         {/* START TIME PICKER */}
         <aside className='flex flex-col'>
-          <label htmlFor="starttime">Start Time:</label>
+          <label htmlFor="startTime">Start Time:</label>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TimePicker
-              id="starttime"
+              id="startTime"
               value={startTime}
               onChange={(time) => setStartTime(time)}
               textField={(params) => <TextField {...params} variant="outlined" className='' />}
@@ -264,10 +265,10 @@ const Tutorial = () => {
 
         {/* END TIME PICKER */}
         <aside className='flex flex-col'>
-          <label htmlFor="endtime">End Time:</label>
+          <label htmlFor="endTime">End Time:</label>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TimePicker
-              id="endtime"
+              id="endTime"
               value={endTime}
               onChange={(time) => setEndTime(time)}
               textField={(params) => <TextField {...params} variant="outlined" className='' />}

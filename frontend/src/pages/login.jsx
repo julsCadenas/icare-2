@@ -69,7 +69,7 @@ const Login = () => {
 
             {/* EMAIL INPUT */}
           <div>
-            <input required autoFocus id='email'
+            <input required autoFocus id='email' autoComplete='email'
               type='email' 
               placeholder='FIT Email' 
               value={student_email}
@@ -80,7 +80,7 @@ const Login = () => {
           
             {/* PASSWORD INPUT */}
           <div>
-            <input required id='password' 
+            <input required id='password' autoComplete='current-password'
               type='password' 
               placeholder='Password' 
               value={password}
