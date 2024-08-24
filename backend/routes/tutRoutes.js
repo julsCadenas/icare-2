@@ -3,6 +3,36 @@ import Tutorial from '../models/tutModel.js';
 
 const router = express.Router();
 
+router.get('/search', async (request, response) => {
+    try {
+        const { student_number } = request.query;
+
+        if (!student_number) {
+            return response.status(400).send({ message: 'Student number is required' });
+        }
+
+        const numStudentNumber = parseInt(student_number, 10);
+
+        if (isNaN(numStudentNumber)) {
+            return response.status(400).send({ message: 'Invalid student number' });
+        }
+
+        const tut = await Tutorial.find({ student_number: numStudentNumber });
+
+        if (tut.length === 0) {
+            return response.status(404).json({ message: 'No tutorials found for this student number' });
+        }
+
+        return response.status(200).json({
+            count: tut.length,
+            data: tut
+        });
+    } catch (e) {
+        console.log(e.message);
+        response.status(500).send({ message: e.message });
+    }
+});
+
 router.post('/', async (request, response) => {
     try {
 

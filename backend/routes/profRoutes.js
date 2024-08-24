@@ -3,6 +3,37 @@ import Professor from '../models/profModel.js';
 
 const router = express.Router();
 
+router.get('/search', async (request, response) => {
+    try {
+        const { dept_name } = request.query;
+
+        if (!dept_name) {
+            return response.status(400).send({ message: 'department name is required' });
+        }
+
+        const deptNameString = String(dept_name);
+
+        if (!deptNameString || /\d/.test(deptNameString)) {
+            return response.status(400).send({ message: 'Invalid department name' });
+        }
+
+        const prof = await Professor.find({ dept_name: deptNameString });
+
+        if (prof.length === 0) {
+            return response.status(404).json({ message: 'No profs found for this department name' });
+        }
+
+        return response.status(200).json({
+            count: prof.length,
+            data: prof
+        });
+    } catch (e) {
+        console.log(e.message);
+        response.status(500).send({ message: e.message });
+    }
+});
+
+
 router.post('/', async (request, response) => {
     try {
         if(!request.body.dept_name || !request.body.professors) {

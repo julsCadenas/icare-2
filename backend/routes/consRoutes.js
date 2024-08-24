@@ -11,7 +11,6 @@ router.get('/search', async (request, response) => {
             return response.status(400).send({ message: 'Student number is required' });
         }
 
-        // Ensure the student_number is a number for accurate querying
         const numStudentNumber = parseInt(student_number, 10);
 
         if (isNaN(numStudentNumber)) {

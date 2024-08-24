@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/header';
-import fetchDepts from '../utils/fetchDepts';
+import fetchData from '../utils/fetchData';
 import sendData from '../utils/sendData';
 import { AuthContext } from '../context/AuthContext';
 
@@ -33,7 +33,7 @@ const Consultation = () => {
 
   // fetch department data
   useEffect(() => {
-    fetchDepts(deptsLink, (data) => {
+    fetchData(deptsLink, (data) => {
       setDepartments(data);
     });
   }, [deptsLink]);

@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// function to send data to backend and database
 const sendData = async (link ,data) => {
   try {
     // console.log('Sending data:', data); 

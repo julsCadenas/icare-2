@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/header';
-import fetchDepts from '../utils/fetchDepts';
+import fetchData from '../utils/fetchData';
 import sendData from '../utils/sendData';
 import { AuthContext } from '../context/AuthContext';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -44,7 +44,7 @@ const Tutorial = () => {
 
   // fetch department data
   useEffect(() => {
-    fetchDepts(deptsLink, (data) => {
+    fetchData(deptsLink, (data) => {
       setDepartments(data);
     });
   }, [deptsLink]);
@@ -172,6 +172,7 @@ const Tutorial = () => {
 
       {/* DEPARTMENT AND PROF DETAILS */}
       <p className='font-semibold text-lg pt-1'>Department and Professors:</p>
+
       <section className='max-w-[300px] md:max-w-[450px] w-full flex flex-col gap-3'>
         {/* DEPARTMENT DROPDOWN */}
         <section className='flex flex-col'>
@@ -229,7 +230,8 @@ const Tutorial = () => {
       </section>
 
       {/* DATE AND COMMENTS INPUT */}
-      <section className='flex flex-col gap-3 max-w-[300px] md:max-w-[450px] w-full pt-5'>
+      <p className='font-semibold text-lg pt-1'>Date and Time:</p>
+      <section className='flex flex-col gap-3 max-w-[300px] md:max-w-[450px] w-full'>
         
         {/* REQUEST DATE PICKER */}
         <aside className='flex flex-col'>
