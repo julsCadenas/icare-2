@@ -6,90 +6,96 @@ const Professors = () => {
   const [activeTab, setActiveTab] = useState('Computer Engineering');
   const [profs, setProfs] = useState([]);
   const [department, setDepartment] = useState(activeTab);
-  const tabs = ['Computer Engineering', 'Computer Science', 'Civil Engineering', 'Math, Physics and Sciences', 'Information Technology']; // array of tabs
-  // const profsLink = 'http://192.168.1.3:5555/professors'; 
-  const searchProfs = `http://192.168.1.3:5555/professors/search?dept_name=${department}`; // search professors by department name endpoint
-  
-  
-  // fetch professors data from search profs endpoint
+  const tabs = ['Computer Engineering', 'Computer Science', 'Civil Engineering', 'Math, Physics and Sciences', 'Information Technology']; // array of departments
+  const acronymTabs = ['CPE', 'CS', 'CE', 'MPS', 'IT']; // array of departments acronyms for smaller screens
+  const searchProfs = `http://192.168.1.3:5555/professors/search?dept_name=${department}`; // endpoint to filter the profs data by department
+
+  // fetch the professor data
   useEffect(() => {
     fetchData(searchProfs, (data) => {
       if (data && data.length > 0) {
-        setProfs(data[0].professors); 
-        // console.log(data[0]);
+        setProfs(data[0].professors);
       }
     });
   }, [department]);
-  
-  // set the active tab as the selected department
+
+  // set the clicked department  as the active tab
   useEffect(() => {
-    if(department){
+    if (department) {
       setDepartment(activeTab);
-    };
-  },[activeTab]);
-  
+    }
+  }, [activeTab]);
+
   return (
-    <main className='font-prompt h-screen w-screen flex flex-col items-center justify-center bg-customWhite'>
+    <main className='font-prompt min-h-screen w-screen flex flex-col items-center pt-14 md:pt-20 bg-customWhite space-y-2'>
       <Header />
 
       {/* NAVBAR TO SWITCH DEPARTMENT TABLES */}
-      <nav className='border-2 border-gray-400 block text-sm font-medium text-center py-1 px-5 rounded-xl'>
+      <nav className='border-2 border-gray-400 block text-sm font-medium text-center py-3 px-5 rounded-xl lg:w-3/4 w-full max-w-8xl'>
 
         {/* PRINT THE DIFFERENT DEPARTMENTS AS TABS */}
         <ul className='flex flex-wrap gap-5 items-center'>
-          { tabs.map((tab) => (
-            <li key={tab} className='flex-1'>
-              <button 
-                onClick={() => setActiveTab(tab)} // set clicked tab as the active tab
-                className={`text-base transition-all ${ activeTab === tab ? 'text-customGreen font-semibold' : 'font-medium text-gray-400 hover:text-customGreen hover:font-semibold' }`}>
-                {tab}
+          {tabs.map((tab, index) => (
+            <li key={index} className='flex-1'>
+              <button
+                onClick={() => setActiveTab(tab)}
+                className={`text-base transition-all ${activeTab === tab ? 'text-customGreen font-semibold' : 'font-medium text-gray-400 hover:text-customGreen hover:font-semibold'}`}
+                >
+                  <span className='hidden md:block'>{tab}</span>
+                  <span className='block md:hidden'>{acronymTabs[index]}</span>
               </button>
             </li>
           ))}
         </ul>
 
       </nav>
-          
+
       {/* TABLE OF PROFS RENDERED PER DEPT SELECTED */}
-      <section>
-        <table>
+      <section className='w-full overflow-x-auto flex justify-center text-sm md:text-base'>
+        <div className='w-full lg:w-3/4 overflow-auto rounded-xl border-2 border-gray-400 m-1'>
 
-          {/* HEAD OF TABLE */}
-          <thead>
-            <tr>
-              <th>Professor</th>
-              <th>Email</th>
-              <th>Schedule</th>
-            </tr>
-          </thead>
+          <table className='w-full border-collapse'>
 
-          {/* BODY OF TABLE */}
-          <tbody>
-          {/* PRINT THE NAME AND EMAIL FROM PROFS ARRAY */}
-          {(profs).map((prof, index) => (
-            <tr key={index}>
-              <td>{prof.prof_name}</td>
-              <td>{prof.email}</td>
-              
-              {/* PRINT SCHEDULE FROM SCHEDULE ARRAY */}
-              <td>
-                {prof.schedule.map((schedule, index) => (
-                <div className='flex gap-3' key={index}>
-                  <p>{schedule.day}</p>
-                  <p>{schedule.time}</p>
-                </div>
-                ))}
-              </td>
-            
-            </tr>
-          ))}
-          </tbody>
-        
-        </table>      
+            {/* HEAD OF TABLE */}
+            <thead className='bg-customGray'>
+              <tr>
+                <th className='p-2 sm:p-4 text-left rounded-tl-xl'>Professor</th>
+                <th className='p-2 sm:p-4 text-left'>Email</th>
+                <th className='p-2 sm:p-4 text-left rounded-tr-xl'>Schedule</th>
+              </tr>
+            </thead>
+
+            {/* BODY OF TABLE */}
+            <tbody>
+
+              {/* PRINT THE NAME AND EMAIL FROM PROFS ARRAY */}
+              {profs.map((prof, index) => (
+                <tr key={index} className='odd:bg-customWhite even:bg-customGray'>
+                  <td className='p-2 sm:p-4 font-medium'>{prof.prof_name}</td>
+                  <td className='p-2 sm:p-4'>{prof.email}</td>
+
+                  {/* PRINT SCHEDULE FROM SCHEDULE ARRAY */}
+                  <td className='p-2 sm:p-4'>
+                    {prof.schedule.map((schedule, index) => (
+                      <div className='flex gap-1 md:gap-2 flex-wrap' key={index}>
+                        <p className='font-medium'>{schedule.day}</p>
+                        <p>{schedule.time}</p>
+                      </div>
+                    ))}
+                  </td>
+
+                </tr>
+              ))}
+
+            </tbody>
+
+          </table>
+
+        </div>
       </section>
 
     </main>
   )
 };
 
-export default Professors
+export default Professors;
