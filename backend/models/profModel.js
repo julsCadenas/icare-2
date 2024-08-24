@@ -13,6 +13,12 @@ const profSchema = new mongoose.Schema({
             required: true,
             trim: true
         },
+        status: {
+            type: String,
+            required: true,
+            trim: true,
+            default: 'Offline'
+        },
         email: {
             type: String,
             required: true,

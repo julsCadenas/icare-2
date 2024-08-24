@@ -115,6 +115,63 @@ router.put('/:id', async (request, response) => {
     };
 });
 
+router.get('/:deptId/professors/:profId', async (req, res) => {
+    try {
+        const { deptId, profId } = req.params;
+
+        const department = await Professor.findById(deptId);
+
+        if (!department) {
+            return res.status(404).json({ message: 'Department not found' });
+        }
+
+        const professor = department.professors.id(profId);
+
+        if (!professor) {
+            return res.status(404).json({ message: 'Professor not found' });
+        }
+
+        // Return the professor details
+        return res.status(200).json(professor);
+
+    } catch (e) {
+        console.log(e.message);
+        res.status(500).send({ message: e.message });
+    }
+});
+
+router.put('/:deptId/:profId', async (req, res) => {
+    try {
+        const { deptId, profId } = req.params;
+        const { status } = req.body;
+
+        if (!status) {
+            return res.status(400).send({ message: 'Status field is required' });
+        }
+
+        const department = await Professor.findById(deptId);
+
+        if (!department) {
+            return res.status(404).json({ message: 'Department not found' });
+        }
+
+        const professor = department.professors.id(profId);
+
+        if (!professor) {
+            return res.status(404).json({ message: 'Professor not found' });
+        }
+
+        professor.status = status;
+        await department.save();
+
+        return res.status(200).send({ message: 'Professor status updated' });
+
+    } catch (e) {
+        console.log(e.message);
+        res.status(500).send({ message: e.message });
+    }
+});
+
 router.delete('/:id', async (request, response) => {
     try{
 
