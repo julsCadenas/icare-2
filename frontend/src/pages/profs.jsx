@@ -73,7 +73,7 @@ const Professors = () => {
                 <tr key={index} className='odd:bg-customWhite even:bg-customGray'>
                   <td className='p-2 sm:p-4'>
                     {/* STATUS INDICATOR */}
-                    <span className={`inline-block w-3 h-3 rounded-full mr-2 ${prof.status == 'Online' ? 'bg-green-500' : 'bg-red-500'}`}/>
+                    <span title={prof.status} className={`inline-block w-3 h-3 rounded-full mr-2 ${prof.status == 'Online' ? 'bg-green-500' : 'bg-red-500'}`}/>
                     {/* PROF NAME */}
                     <span className='font-medium'>{prof.prof_name}</span>
                   </td>

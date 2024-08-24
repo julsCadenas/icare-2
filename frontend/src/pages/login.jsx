@@ -19,7 +19,7 @@ const Login = () => {
   }, [isAuthenticated, navigate]);
 
 
-  // LOGIN FUNCTION
+  // LOGIN FUNCTION 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -90,6 +90,7 @@ const Login = () => {
           </div>
         </section>
 
+        {/* LOGIN STATUS MESSAGE */}
         <section>
           {/* ERROR TEXT */}
           {error && <p className='text-red-500'>{error}</p>}

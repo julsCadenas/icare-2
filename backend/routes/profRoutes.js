@@ -140,22 +140,23 @@ router.get('/:deptId/professors/:profId', async (req, res) => {
     }
 });
 
-router.put('/:deptId/:profId', async (req, res) => {
+// update professor status
+router.put('/:deptName/:profName', async (req, res) => {
     try {
-        const { deptId, profId } = req.params;
+        const { deptName, profName } = req.params;
         const { status } = req.body;
 
         if (!status) {
             return res.status(400).send({ message: 'Status field is required' });
         }
 
-        const department = await Professor.findById(deptId);
+        const department = await Professor.findOne({ dept_name: deptName });
 
         if (!department) {
             return res.status(404).json({ message: 'Department not found' });
         }
 
-        const professor = department.professors.id(profId);
+        const professor = department.professors.find(prof => prof.prof_name === profName);
 
         if (!professor) {
             return res.status(404).json({ message: 'Professor not found' });
