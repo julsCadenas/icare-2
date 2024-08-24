@@ -19,7 +19,7 @@ const accsSchema = new mongoose.Schema({
         unique: true,
         trim: true
     },
-    Department: {
+    role: {
         type: String,
         required: true,
         unique: true,

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import setStatus from '../utils/setStatus';
 
 const Header = () => {
     const { user, logout } = useContext(AuthContext); // fetches logout function and user data from authContext 
@@ -12,8 +13,13 @@ const Header = () => {
     const navigate = useNavigate();
 
     // logout function
-    const handleLogout = () => {
+    const handleLogout = async () => {
         logout();
+
+        const userData = user;
+        // Update status to offline
+        await setStatus(userData, 'Offline');
+
         navigate('/login');
     };
 

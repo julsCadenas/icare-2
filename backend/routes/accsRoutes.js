@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
                 student_email: user.student_email,
                 student_name: user.student_name,
                 student_number: user.student_number,
-                department: user.department
+                role: user.role
             }
         });
     } catch (error) {
@@ -44,9 +44,9 @@ router.post('/', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
     try {
-        const { student_number, student_email, student_name, department, password } = req.body;
+        const { student_number, student_email, student_name, role, password } = req.body;
 
-        if (!student_number || !student_email || !student_name || !department || !password) {
+        if (!student_number || !student_email || !student_name || !role || !password) {
             return res.status(400).json({ message: 'Send all required fields' });
         }
 
@@ -57,7 +57,7 @@ router.post('/signup', async (req, res) => {
             student_number,
             student_email,
             student_name,
-            department,
+            role,
             password: hashedPassword
         };
 

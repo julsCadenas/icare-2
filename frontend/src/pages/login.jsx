@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
+import setStatus from '../utils/setStatus';
 
 const Login = () => {
   const [student_email, setEmail] = useState(''); 
@@ -9,7 +10,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
-  const { login, isAuthenticated } = useContext(AuthContext);
+  const { user, login, isAuthenticated } = useContext(AuthContext);
 
   // Prevents user from going back to the login page withoiut logging off
   useEffect(() => {
@@ -31,9 +32,14 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        login(response.data.token);
+        const userData = response.data.user;
+        login(response.data.token, userData);
         setSuccess('Login successful!');
         setError('');
+        
+        // set status to online
+        await setStatus(userData, 'Online');
+
         navigate('/home', { replace: true });
       }
     } catch (error) {
