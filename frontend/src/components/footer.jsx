@@ -6,7 +6,7 @@ const Footer = () => {
     const email = 'icare@feutech.edu.ph'
 
     return (
-        <footer className='flex flex-wrap font-prompt space-x-10 lg:space-x-36 items-center px-0 lg:px-96 border-t-customGray border-4'>
+        <footer className='flex flex-wrap font-prompt space-x-10 lg:space-x-36 items-center border-t-customGray border-4'>
 
             {/* icare logo */}
             <section className='px-10 lg:px-0 pt-5'>
