@@ -79,6 +79,7 @@ router.delete('/:id', auth, async (req, res) => {
 
         res.status(200).json({ message: 'Account deleted successfully' });
     } catch (e) {
+        console.error('Delete Error:', e);
         res.status(500).json({ message: e.message });
     }
 });

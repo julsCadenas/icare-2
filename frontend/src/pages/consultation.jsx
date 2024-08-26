@@ -3,6 +3,7 @@ import Header from '../components/header';
 import fetchData from '../utils/fetchData';
 import sendData from '../utils/sendData';
 import { AuthContext } from '../context/AuthContext';
+import ConsAdmin from '../components/consadmin';
 
 const Consultation = () => {
   const { user } = useContext(AuthContext); // fetch user data
@@ -108,6 +109,11 @@ const Consultation = () => {
       {/* TITLE */}
       <p className='font-bold text-2xl md:text-3xl text-customGreen'>Consultation</p>
 
+      {/* CHECK IF USER IS ADMIN */}
+      {/* IF ADMIN LOAD ADMIN PAGE */}
+      { user?.role === 'admin' ? (<ConsAdmin />) : (<>
+
+      {/* IF NOT LOAD FORM */}
       {/* PERSONAL DETAILS */}
       <section className='space-y-3 max-w-[300px] md:max-w-[450px] w-full'>
 
@@ -254,6 +260,9 @@ const Consultation = () => {
       <button 
         onClick={handleSubmit} 
         className='bg-customGreen text-customWhite p-1 px-3 focus:outline-none hover:bg-green2 focus:ring-4 focus:ring-green2 transition-all font-bold text-xl rounded-lg'>Submit</button>
+
+
+      </>)}
 
     </main>
   );

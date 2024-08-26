@@ -76,7 +76,7 @@ const Login = () => {
             {/* EMAIL INPUT */}
           <div>
             <input required autoFocus id='email' autoComplete='email'
-              type='email' 
+              type='text' 
               placeholder='FIT Email' 
               value={student_email}
               onChange={(e) => setEmail(e.target.value)}

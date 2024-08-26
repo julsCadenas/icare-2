@@ -147,4 +147,31 @@ router.delete('/:id', async (request, response) => {
     }
 });
 
+router.patch('/:id/remarks', async (request, response) => {
+    try {
+        const { id } = request.params;
+        const { remarks } = request.body;
+
+        if (!remarks) {
+            return response.status(400).send({ message: 'Remarks are required' });
+        }
+
+        const updatedTuts = await Tutorial.findByIdAndUpdate(
+            id, 
+            { remarks },
+            { new: true } 
+        );
+
+        if (!updatedTuts) {
+            return response.status(404).json({ message: 'Tutorial not found' });
+        }
+
+        return response.status(200).json(updatedTuts);
+        
+    } catch (e) {
+        console.log(e.message);
+        response.status(500).send({ message: e.message });
+    }
+});
+
 export default router;

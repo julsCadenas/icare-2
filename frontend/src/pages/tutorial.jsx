@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/header';
 import fetchData from '../utils/fetchData';
 import sendData from '../utils/sendData';
+import TutAdmin from '../components/tutadmin';
 import { AuthContext } from '../context/AuthContext';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
@@ -128,6 +129,11 @@ const Tutorial = () => {
       {/* TITLE */}
       <p className='font-bold text-2xl md:text-3xl text-customGreen'>Tutorial</p>
 
+      {/* CHECK IF USER IS ADMIN */}
+      {/* IF ADMIN LOAD THE ADMIN PAGE */}
+      { user?.role === 'admin' ? (<TutAdmin />) : (<>
+
+      {/* IF NOT LOAD THE FORM */}
       {/* PERSONAL DETAILS */}
       <section className='space-y-3 max-w-[300px] md:max-w-[450px] w-full'>
         {/* NAME INPUT BOX */}
@@ -300,6 +306,8 @@ const Tutorial = () => {
 
       {/* SUBMIT BUTTON */}
       <button onClick={handleSubmit} className='bg-customGreen text-customWhite p-1 px-3 focus:outline-none hover:bg-green2 focus:ring-4 focus:ring-green2 transition-all font-bold text-xl rounded-lg'>Submit</button>
+
+      </>)}
 
     </main>
   );
