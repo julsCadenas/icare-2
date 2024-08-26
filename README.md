@@ -12,6 +12,16 @@ My first CRUD project was the [iCARE Website](https://github.com/julsCadenas/iCA
 - Axios
 - Tailwind CSS
 
+### Accounts for public use
+
+Email: ```johndoe@gmail.com```
+ Password: ```password```
+
+### Admin account
+
+Email: ```admin```
+ Password: ```admin```
+
 ## How to run:
 ```bash
 cd path/to/project
@@ -28,3 +38,23 @@ cd frontend
 npm i
 npm run dev 
 ```
+
+# Website Screenshots
+
+## Login page
+![loginpage](./photos/loginpage.png)
+
+## Dashboard
+![dashboard](./photos/dashboard.png)
+
+## User Profile
+![profile](./photos/profile.png)
+
+## Consultation Form
+![consultationform](./photos/consultationform.png)
+
+## Prof Table
+![proftable](./photos/proftable.png)
+
+## Admin Consultation Page
+![adminconsultation](./photos/adminconsultation.png)
