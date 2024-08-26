@@ -6,7 +6,7 @@ const setStatus = async (userData, status) => {
         const profName = userData.student_name;
 
         try {
-            await axios.put(`http://192.168.1.3:5555/professors/${deptName}/${profName}`, { status });
+            await axios.put(`http://192.168.1.5:5555/professors/${deptName}/${profName}`, { status });
         } catch (error) {
             console.error('Error updating status:', error);
         }

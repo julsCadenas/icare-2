@@ -5,6 +5,7 @@ import Home from './pages/home';
 import Consultation from './pages/consultation'
 import Tutorial from './pages/tutorial'
 import Professors from './pages/profs';
+import Profile from './pages/profile';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './routes/protectedroute';
 
@@ -44,6 +45,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Professors />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             }
           />

@@ -109,7 +109,7 @@ const Header = () => {
                             <section ref={navbarDropdownRef} className="absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 z-20">
                                 <ul className="py-2 text-sm text-gray-700">
                                     <li>
-                                        <a href="#" className="block px-4 py-2 hover:bg-gray-100">Profile</a>
+                                        <a href="/profile" className="block px-4 py-2 hover:bg-gray-100">Profile</a>
                                     </li>
                                     <li>
                                         <button onClick={handleLogout} className="block px-4 py-2 w-full text-left hover:bg-gray-100">Logout</button>
@@ -191,7 +191,7 @@ const Header = () => {
                             {/* THE DROPDOWN INSIDE SIDEBAR */}
                             {isSidebarDropdownOpen && (
                                 <div ref={sidebarDropdownRef} className="absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-full">
-                                    <a href="#" className="block px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-200">Profile</a>
+                                    <a href="/profile" className="block px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-200">Profile</a>
                                     <button onClick={handleLogout} className="block px-4 py-2 w-full text-left text-sm font-semibold text-gray-700 hover:bg-gray-200">
                                         Logout
                                     </button>
