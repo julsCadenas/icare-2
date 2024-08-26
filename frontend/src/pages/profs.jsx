@@ -8,7 +8,7 @@ const Professors = () => {
   const [department, setDepartment] = useState(activeTab);
   const tabs = ['Computer Engineering', 'Computer Science', 'Civil Engineering', 'Math, Physics and Sciences', 'Information Technology']; // array of departments
   const acronymTabs = ['CPE', 'CS', 'CE', 'MPS', 'IT']; // array of departments acronyms for smaller screens
-  const searchProfs = `http://192.168.1.3:5555/professors/search?dept_name=${department}`; // endpoint to filter the profs data by department
+  const searchProfs = `http://192.168.1.5:5555/professors/search?dept_name=${department}`; // endpoint to filter the profs data by department
 
   // fetch the professor data
   useEffect(() => {

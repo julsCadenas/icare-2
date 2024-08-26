@@ -19,8 +19,8 @@ const Consultation = () => {
   const [studentNumber, setStudentNumber] = useState('');
   const [studentEmail, setStudentEmail] = useState('');
   const [name, setName] = useState('');
-  const deptsLink = 'http://192.168.1.3:5555/departments'; // departments endpoint
-  const consLink = 'http://192.168.1.3:5555/consultation'; // consultations endpoint
+  const deptsLink = 'http://192.168.1.5:5555/departments'; // departments endpoint
+  const consLink = 'http://192.168.1.5:5555/consultation'; // consultations endpoint
 
   // initialize the name, student number and email with the user's data
   useEffect(() => {

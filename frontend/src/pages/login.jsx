@@ -26,7 +26,7 @@ const Login = () => {
 
     // always check for ip changes
     try {
-      const response = await axios.post('http://192.168.1.3:5555/login', {
+      const response = await axios.post('http://192.168.1.5:5555/login', {
         student_email,
         password,
       });

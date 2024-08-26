@@ -30,8 +30,8 @@ const Tutorial = () => {
   const [reqDate, setReqDate] = useState(null);
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
-  const deptsLink = 'http://192.168.1.3:5555/departments'; // departments endpoint
-  const consLink = 'http://192.168.1.3:5555/tutorial'; // tutorial endpoint
+  const deptsLink = 'http://192.168.1.5:5555/departments'; // departments endpoint
+  const consLink = 'http://192.168.1.5:5555/tutorial'; // tutorial endpoint
 
   // initialize the name, student number, and email with the user's data
   useEffect(() => {

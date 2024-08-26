@@ -18,12 +18,12 @@ const AuthProvider = ({ children }) => {
       const token = localStorage.getItem('authToken');
       if (token) {
         try {
-          const response = await axios.post('http://192.168.1.3:5555/login/tokenIsValid', null, {
+          const response = await axios.post('http://192.168.1.5:5555/login/tokenIsValid', null, {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (response.data) {
             setIsAuthenticated(true);
-            const userResponse = await axios.get('http://192.168.1.3:5555/login/current', {
+            const userResponse = await axios.get('http://192.168.1.5:5555/login/current', {
               headers: { Authorization: `Bearer ${token}` }
             });
             setUser(userResponse.data.user);
@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem('authToken', token);
     window.localStorage.setItem('authToken', token);
     setIsAuthenticated(true);
-    axios.get('http://192.168.1.3:5555/login/current', {
+    axios.get('http://192.168.1.5:5555/login/current', {
       headers: { Authorization: `Bearer ${token}` }
     }).then(response => {
       setUser(response.data.user);
