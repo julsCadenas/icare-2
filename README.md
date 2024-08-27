@@ -1,6 +1,7 @@
 # iCARE WEBSITE 
 
 My first CRUD project was the [iCARE Website](https://github.com/julsCadenas/iCARE-Website), originally written in PHP. I am now rewriting it using the MERN tech stack.
+The project emulates the school's system, where if a person is enrolled, they automatically have an account within the web app, which explains the lack of a "sign up" function.
 
 [OPEN HERE](https://icare-unofficial.vercel.app/)
 
