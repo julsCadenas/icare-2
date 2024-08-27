@@ -14,7 +14,7 @@ My first CRUD project was the [iCARE Website](https://github.com/julsCadenas/iCA
 
 ### Accounts for public use
 
-Email: ```johndoe@gmail.com```
+Email: ```johndoe@gmail.edu.com```
  Password: ```password```
 
 ### Admin account
