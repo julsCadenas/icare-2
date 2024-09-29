@@ -10,13 +10,13 @@ The project emulates the school's system, where if a person is enrolled, they au
 - MongoDB using the Mongoose library
 - Express JS
 - Node JS
-Backend is deployed on [Render](https://render.com/)
+- Backend is deployed on [Render](https://render.com/)
 
 ### Frontend
 - React JS
 - Axios
 - Tailwind CSS
-Frontend is deployed on [Vercel](https://vercel.com/)
+- Frontend is deployed on [Vercel](https://vercel.com/)
 
 ### Accounts for public use
 
